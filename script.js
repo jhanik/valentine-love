@@ -1,23 +1,29 @@
 function showMessage() {
-    document.getElementById("loveMessage").style.display = "block";
-    document.getElementById("bgMusic").play();
+    const message = document.getElementById("loveMessage");
+    message.style.display = "block";
+
+    const music = document.getElementById("bgMusic");
+    music.play();
 }
 
-/* Create floating hearts */
+/* Floating hearts */
 const heartsContainer = document.querySelector(".hearts-container");
 
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "💖";
+
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 4 + 4 + "s";
+
     heartsContainer.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
-    }, 6000);
+    }, 8000);
 }
 
-setInterval(createHeart, 300);
+/* Slightly fewer hearts for mobile performance */
+setInterval(createHeart, 500);
