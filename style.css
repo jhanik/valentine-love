@@ -1,120 +1,188 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body */
 body {
     font-family: 'Segoe UI', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+    margin: 0;
     padding: 20px;
+    color: white;
+    text-align: center;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Animated gradient */
-@keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+/* ========================= */
+/* FULLSCREEN SLIDESHOW */
+/* ========================= */
+
+.slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3;
+    overflow: hidden;
 }
 
-/* Hero Section */
-.hero {
-    max-width: 600px;
+.slide {
+    position: absolute;
     width: 100%;
+    height: 100%;
+    background-size: contain;  /* no crop */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Dark overlay for readability */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -2;
+}
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
+
+.hero {
+    position: relative;
+    z-index: 1;
+    margin-top: 20vh;
+    padding: 0 10px;
 }
 
 .hero h1 {
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: clamp(28px, 6vw, 50px);
     text-shadow: 0 0 20px rgba(255,255,255,0.8);
 }
 
 .hero h2 {
     margin-top: 10px;
-    font-size: clamp(16px, 4vw, 22px);
-    opacity: 0.9;
+    font-size: clamp(16px, 4vw, 24px);
+    opacity: 0.95;
 }
 
-/* Button */
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
 button {
-    margin-top: 25px;
-    padding: 14px 30px;
+    margin-top: 30px;
+    padding: 14px 35px;
     font-size: clamp(14px, 4vw, 18px);
-    border: none;
     border-radius: 50px;
     cursor: pointer;
-    background: white;
-    color: #ff4e8b;
+    
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
     font-weight: bold;
-    transition: 0.4s;
-    box-shadow: 0 0 20px rgba(255,255,255,0.7);
+    
+    transition: 0.4s ease;
 }
 
 button:hover {
-    background: #ff4e8b;
-    color: white;
+    background: rgba(255, 255, 255, 0.35);
     transform: scale(1.05);
 }
 
-/* Love Card */
+
+/* ========================= */
+/* LOVE MESSAGE CARD */
+/* ========================= */
+
 .love-card {
-    display: none;
-    margin-top: 30px;
-    padding: 25px;
-    width: 100%;
+    display: none;               /* hidden initially */
+    margin: 40px auto;
+    padding: 25px 30px;
+    width: 90%;
     max-width: 500px;
     border-radius: 20px;
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.85); /* More solid for readability */
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.15);  /* very transparent */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    animation: popUp 1s ease forwards;
-    color: #b30059; /* Romantic deep pink text */
+
+    animation: popUp 0.8s ease forwards;
+    color: #fff;                    /* white text */
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .love-card h2 {
     margin-bottom: 15px;
-    font-size: clamp(18px, 5vw, 26px);
-    color: #ff0066; /* Stronger heading color */
+    font-size: clamp(20px, 5vw, 28px);
+    color: #fff;               /* heading in white */
+    text-shadow: 0 0 10px rgba(0,0,0,0.7); /* subtle shadow for readability */
 }
 
 .love-card p {
     font-size: clamp(14px, 4vw, 18px);
     line-height: 1.7;
-    color: #4d004d; /* Soft dark purple */
+    color: #f8f8f8;            /* light text */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* soft shadow for readability */
 }
 
 
-/* Animations */
+
+/* Popup animation */
 @keyframes popUp {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-/* Floating Hearts */
+/* ========================= */
+/* FLOATING HEARTS */
+/* ========================= */
+
 .hearts-container {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: -1;
-    top: 0;
-    left: 0;
+    pointer-events: none;
 }
 
 .heart {
     position: absolute;
     bottom: -40px;
-    font-size: 20px;
     animation: floatUp linear forwards;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
@@ -124,3 +192,21 @@ button:hover {
     }
 }
 
+/* ========================= */
+/* MOBILE TUNING */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        margin-top: 18vh;
+    }
+
+    .love-card {
+        padding: 20px;
+    }
+
+    button {
+        padding: 12px 25px;
+    }
+}
