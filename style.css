@@ -113,42 +113,25 @@ button:hover {
 /* ========================= */
 
 .love-card {
-    display: none;               /* hidden initially */
+    display: none;
     margin: 40px auto;
-    padding: 25px 30px;
-    width: 90%;
+    padding: 30px;
+    width: 100%;
     max-width: 500px;
-    border-radius: 20px;
-
-    /* Glass effect */
-    background: rgba(255, 255, 255, 0.15);  /* very transparent */
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-
-    animation: popUp 0.8s ease forwards;
-    color: #fff;                    /* white text */
-    text-align: center;
-    position: relative;
-    z-index: 1;
+    color: white;
 }
 
 .love-card h2 {
     margin-bottom: 15px;
     font-size: clamp(20px, 5vw, 28px);
-    color: #fff;               /* heading in white */
-    text-shadow: 0 0 10px rgba(0,0,0,0.7); /* subtle shadow for readability */
+    color: #fff;
 }
 
 .love-card p {
     font-size: clamp(14px, 4vw, 18px);
-    line-height: 1.7;
-    color: #f8f8f8;            /* light text */
-    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* soft shadow for readability */
+    line-height: 1;
+    color: #f8f8f8;
 }
-
 
 
 /* Popup animation */
