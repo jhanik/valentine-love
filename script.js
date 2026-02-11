@@ -1,9 +1,14 @@
 function showMessage() {
     const message = document.getElementById("loveMessage");
+    const startBtn = document.getElementById("startButton");
     message.style.display = "block";
+    startBtn.style.display = "none";
 
     const music = document.getElementById("bgMusic");
     music.play();
+
+    /* Start slideshow after button click */
+    startSlideshow();
 }
 
 /* Floating hearts */
@@ -31,6 +36,7 @@ setInterval(createHeart, 500);
 /* Background slideshow */
 const slides = document.querySelectorAll(".slide");
 let currentSlide = 0;
+let slideshowInterval; // To store interval ID
 
 function changeSlide() {
     slides[currentSlide].classList.remove("active");
@@ -38,4 +44,9 @@ function changeSlide() {
     slides[currentSlide].classList.add("active");
 }
 
-setInterval(changeSlide, 4000); // Change every 4 seconds
+function startSlideshow() {
+    // Only start if not already running
+    if (!slideshowInterval) {
+        slideshowInterval = setInterval(changeSlide, 4000); // Change every 4 seconds
+    }
+}
