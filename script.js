@@ -27,3 +27,15 @@ function createHeart() {
 
 /* Slightly fewer hearts for mobile performance */
 setInterval(createHeart, 500);
+
+/* Background slideshow */
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function changeSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add("active");
+}
+
+setInterval(changeSlide, 4000); // Change every 4 seconds
